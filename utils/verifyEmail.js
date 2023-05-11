@@ -1,7 +1,10 @@
 const nodemailer = require('nodemailer');
 
 //send a verification email to the new user
-function sendLinkVerificationEmail(email, verificationLik) {
+function sendLinkVerificationEmail(email, verificationToken) {
+
+
+
 
     // create a transporter to email service provider
     const emailService = nodemailer.createTransport({
@@ -23,12 +26,12 @@ function sendLinkVerificationEmail(email, verificationLik) {
 
     //send the email
     emailService.sendMail(emailCompose, (error, info) => {
-        if(err) {
-            console.err('Error sending email:', err);
+        if (error) {
+            console.err('Error sending email:', error);
         } else {
-            console.log('Email sent:', info.res);
+            console.log('Email sent:', info.response);
         }
     });
 }
 
-module.exports = {sendLinkVerificationEmail};
+module.exports = { sendLinkVerificationEmail };

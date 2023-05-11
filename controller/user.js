@@ -1,14 +1,14 @@
 const db = require("../models");
 const User = db.user;
 const { sendLinkVerificationEmail } = require('../utils/verifyEmail')
-
+const emailValidator = require('email-validator');
 
 
 
 //user registration
 const userAuthController = {
     register: async (req, res) => {
-        const { name, username, email, password, repeatPassword } = req.body;
+        const { name, username, email, password } = req.body;
 
         try {
             //name
