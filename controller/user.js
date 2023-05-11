@@ -6,17 +6,16 @@ const { sendLinkVerificationEmail } = require('../utils/verifyEmail')
 
 
 //user registration
-const registerUserAuth = {
+const userAuthController = {
     register: async (req, res) => {
         const { name, username, email, password, repeatPassword } = req.body;
 
         try {
             //name
-            const checkName = await User.findOne({
-                where: {
-                    name
-                }
-            });
+            const checkName = await User.findOne({name});
+            if (checkName) {
+                return res.status(200).json({ message: 'Name is registered' });
+            }
 
             //check email
             const existingEmail = await User.findOne({ email });
@@ -72,4 +71,4 @@ const registerUserAuth = {
         } 
 }
 
-module.exports = registerUserAuth;
+module.exports = userAuthController;

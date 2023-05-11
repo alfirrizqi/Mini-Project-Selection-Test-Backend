@@ -1,4 +1,4 @@
-const registerUserAuth = require("./userAuth")
+const userAuthController = require("./user")
 
 
 
@@ -8,5 +8,5 @@ const registerUserAuth = require("./userAuth")
 
 
 module.exports = {
-    registerUserAuth,
+    userAuthController,
 }

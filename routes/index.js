@@ -1,5 +1,5 @@
-const registerUserRoutes = require("./userAuthRoute");
+const authRoutes = require("./auth");
 
 module.exports = {
-    registerUserRoutes
+    authRoutes
 }
