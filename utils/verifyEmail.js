@@ -21,7 +21,7 @@ function sendLinkVerificationEmail(email, verificationToken) {
         from: 'your-email@gmail.com',
         to: email,
         subject: 'Account Verification',
-        text: 'Please click the following link to verify your account: ${verificationLink}'
+        text: `Please click the following link to verify your account: http://your-domain.com/verify/${verificationToken}`,
     };
 
     //send the email
