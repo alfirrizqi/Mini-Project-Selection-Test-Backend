@@ -5,9 +5,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const nodemailer = require('nodemailer');
-
-// const mysql2 = require('mysql2')
-
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const mysql = require('mysql2');
 
 app.use(cors());
 
@@ -25,7 +25,15 @@ db.sequelize.sync({alter: true});
 const {authRoutes} = require('./routes')
 
 // middleware
+app.use(express.json())
+
+
 app.use('/auth', authRoutes)
+// app.use('/auth/posts', postRoutes)
+// app.use('/auth/comments', commentRoutes)
+// app.use('/auth/likes', likeRoutes)
+
+
 
 app.listen(port, ()=> {
     console.log(`server is running at ${port}`)

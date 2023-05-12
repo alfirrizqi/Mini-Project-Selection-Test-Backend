@@ -11,7 +11,7 @@ const router = require('express').Router();
 
 //router untuk register
 router.post("/register", userAuth.register)
-
+router.post('/Login', userAuth.Login)
 
 
 
