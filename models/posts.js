@@ -12,7 +12,7 @@ const Posts = (sequelize) => {
         },
         media:{
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         caption: {
             type: DataTypes.TEXT,
@@ -23,9 +23,16 @@ const Posts = (sequelize) => {
         },
         user_id:{
             type: DataTypes.INTEGER,
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
+            allowNull: true,
+            defaultValue: null
         }
     }, {
-        tableName: 'user'
+        paranoid: true,
+        timesstamps: true,
+        tableName: 'posts'
     })
 }
 module.exports = Posts

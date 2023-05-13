@@ -15,11 +15,12 @@ const mysql = require('mysql2');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+app.use('/public', express.static('public'))
 
 
 //db
-const db = require('./models');
-db.sequelize.sync({alter: true});
+ const db = require('./models');
+ db.sequelize.sync({alter: true});
 
 // routes
 const {authRoutes} = require('./routes')

@@ -1,4 +1,5 @@
 const userAuthController = require("./user")
+const postController = require("./posts")
 
 
 
@@ -9,4 +10,5 @@ const userAuthController = require("./user")
 
 module.exports = {
     userAuthController,
+    postController,
 }
