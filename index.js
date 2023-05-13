@@ -9,13 +9,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2');
 
-app.use(cors());
+
 
 //to support cookies from the http request
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(cookieParser());
+
 
 //db
 const db = require('./models');
@@ -26,8 +26,11 @@ const {authRoutes} = require('./routes')
 
 // middleware
 app.use(express.json())
+app.use(cors());
+app.use(cookieParser());
 
 
+//untuk memanggil routes
 app.use('/auth', authRoutes)
 // app.use('/auth/posts', postRoutes)
 // app.use('/auth/comments', commentRoutes)
