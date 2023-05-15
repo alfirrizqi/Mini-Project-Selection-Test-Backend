@@ -4,12 +4,12 @@ const postController = require('../controller/posts')
 const likeController = require('../controller/likes')
 const commentsController = require('../controller/comments')
 const {upload} = require('../src/uploader/uploader.js')
-
-
+const verifyToken  = require('../middleware/auth')
 const router = require('express').Router();
 
 
 
+//middleware
 
 
 
@@ -21,21 +21,25 @@ router.post('/Login', userController.Login)
 router.post('/logout', userController.Logout)
 
 //router untuk cretae post
-router.post('/post/create/', upload({
+router.post('/post/create/', verifyToken, upload({
     acceptedFileTypes: ["png", "jpg", "jpeg"],
     filePrefix: "FILE",
     maxSize: 1 * 1024 * 1024,
 }).single("media"), postController.Create)
-//router untuk get post
-router.get('/post/get', postController.get)
+//router untuk get posts
+router.get('/post/get', verifyToken, postController.get)
+
 //router untuk update post
-router.put("/post/update/:id", upload({
-    acceptedFileTypes: ["png", "jpg", "jpeg"],
-    filePrefix: "FILE",
-    maxSize: 1 * 1024 * 1024,
-}).single("media"), postController.update)
+router.put("/post/update/:id", verifyToken, postController.update)
 //route untuk delete post per userid
 router.delete("/post/delete/:id", postController.deleteById)
+//router untuk get a post by user id
+router.get('/post/get/:id', postController.getById)
+
+
+
+
+
 
 //router untuk like
 router.get('/likes',)

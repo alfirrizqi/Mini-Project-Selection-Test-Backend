@@ -102,11 +102,25 @@ const userAuthController = {
             
 
             // Create and sign a JWT token
-            const token = jwt.sign({ userId: User.id }, 'your_secret_key');
+            // const token = jwt.sign({ userId: User.id }, 'your_secret_key');
 
-            await existingEmail.update({
-                token
-            });
+            const token = jwt.sign(
+                { user_id: existingEmail.id, email },
+                'authentication',
+                {
+                  expiresIn: "",
+                }
+              );
+
+             
+        
+              // save user token
+            //   User.token = token;
+
+
+            // await existingEmail.update({
+            //     token
+            // });
 
             // Redirect to the home page with the token
             res.status(200).json({message: 'login succes', token })
@@ -132,6 +146,13 @@ const userAuthController = {
 
         }
 
+    },
+    Update: async (req, res) => {
+        try {
+            
+        } catch (error) {
+            
+        }
     }
 
 }
