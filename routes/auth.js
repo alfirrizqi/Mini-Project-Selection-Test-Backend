@@ -4,7 +4,8 @@ const postController = require('../controller/posts')
 const likeController = require('../controller/likes')
 const commentsController = require('../controller/comments')
 const {upload} = require('../src/uploader/uploader.js')
-const verifyToken  = require('../middleware/auth')
+const verifyToken  = require('../middleware/auth');
+const verifyController = require('../controller/verify');
 const router = require('express').Router();
 
 
@@ -35,6 +36,9 @@ router.put("/post/update/:id", verifyToken, postController.update)
 router.delete("/post/delete/:id", postController.deleteById)
 //router untuk get a post by user id
 router.get('/post/get/:id', postController.getById)
+
+//route untuk verifikasi
+router.get('/verify/:token', verifyController.verify)
 
 
 

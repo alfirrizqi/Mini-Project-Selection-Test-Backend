@@ -29,6 +29,12 @@ const Users = (sequelize) => {
         token:{
             type: DataTypes.STRING,
            
+        },
+        verify_at:{
+            type: DataTypes.DATE,
+        },
+        verify_token: {
+            type: DataTypes.STRING,
         }
     }, {
         tableName: 'user'

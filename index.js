@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 
 app.use('/public', express.static('public'))
 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
 //db
  const db = require('./models');

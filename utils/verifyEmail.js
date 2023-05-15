@@ -24,7 +24,7 @@ function sendLinkVerificationEmail(email, verificationToken) {
         from: 'alfirrizqiivan68@gmail.com',
         to: email,
         subject: 'Account Verification',
-        text: `Please click the following link to verify your account: http://localhost:8000/verify/${verificationToken}`,
+        text: `Please click the following link to verify your account: http://localhost:8000/auth/verify/${verificationToken}`,
     };
 
     //send the email

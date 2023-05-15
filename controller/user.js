@@ -4,12 +4,13 @@ const { sendLinkVerificationEmail } = require('../utils/verifyEmail')
 const emailValidator = require('email-validator');
 const jwt = require('jsonwebtoken')
 const bcrypt = require("bcryptjs");
-
+const crypto = require('crypto-js');
+const md5 = require('md5');
 
 //user registration
 const userAuthController = {
     Register: async (req, res) => {
-        const { name, username, email, password } = req.body;
+        const { name, username, email, password} = req.body;
 
         try {
 
@@ -55,6 +56,10 @@ const userAuthController = {
             const salt = await bcrypt.genSalt(10);
             const hashPassword = await bcrypt.hash(password, salt);
 
+            //buat random token buat verifikasi
+            let verificationToken = (Math.random() + 1).toString(36).substring(7);
+            console.log("random", verificationToken);
+
             // create a new user
             const newUser = new User({
                 name,
@@ -62,13 +67,17 @@ const userAuthController = {
                 email,
                 password: hashPassword,
                 Verified: false,
+                verify_token: verificationToken
             });
-
+    
             //save to database
             await newUser.save();
 
+            //generate token
+
+
             //sending verification email
-            sendLinkVerificationEmail(email, newUser.id)
+            sendLinkVerificationEmail(email, verificationToken)
 
             res.status(200).json({ message: 'Registration succesful. Please check your email for verification.' })
 
